@@ -185,16 +185,20 @@ class MapStack<T> {
  */
 function decimal2binary(decimalNumber: number): string {
   if (decimalNumber === 0) return "0";
-  let binaryString = "";
+
   const stack = new MapStack<number>();
+  let binaryString = "";
   let number = decimalNumber;
+
   while (number > 0) {
     stack.push(Math.floor(number % 2));
     number = Math.floor(number / 2);
   }
+
   while (!stack.isEmpty()) {
     binaryString += stack.pop();
   }
+
   return binaryString;
 }
 ```
@@ -204,13 +208,16 @@ function decimal2binary(decimalNumber: number): string {
 ```typescript
 function baseConverter(decimalNumber: number, base: number) {
   if (decimalNumber === 0) return "0";
+
   const stack = new MapStack<number>();
   const digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let number = decimalNumber;
   let baseString = "";
+
   if (!(2 <= base && base <= 36)) {
     return "";
   }
+
   while (number > 0) {
     stack.push(Math.floor(number % base));
     number = Math.floor(number / base);
@@ -219,6 +226,7 @@ function baseConverter(decimalNumber: number, base: number) {
   while (!stack.isEmpty()) {
     baseString += digits[stack.pop()!];
   }
+
   return baseString;
 }
 ```
