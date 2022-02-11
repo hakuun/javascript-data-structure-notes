@@ -199,7 +199,14 @@ function decimal2binary(decimalNumber: number): string {
   return binaryString;
 }
 
-function baseConverter(decimalNumber: number, base: number) {
+/**
+ *
+ *
+ * @param {number} decimalNumber
+ * @param {number} base
+ * @return {string}
+ */
+function baseConverter(decimalNumber: number, base: number): string {
   if (decimalNumber === 0) return "0";
 
   const stack = new MapStack<number>();
