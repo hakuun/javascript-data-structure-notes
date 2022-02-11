@@ -117,7 +117,7 @@ class ObjectStack<T> {
   toString() {
     let result = "";
     Object.keys(this.items).forEach((value, index) => {
-      result += `${index === 0 ? "" : ","}${value}`;
+      result += `${index === 0 ? "" : ","}${this.items[value]}`;
     });
     return result;
   }
