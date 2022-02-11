@@ -34,6 +34,7 @@ class Deque<T> {
     if (this.isEmpty()) return undefined;
 
     const result = this.items.get(this.lowestCount);
+
     this.items.delete(this.lowestCount);
     this.lowestCount++;
 
@@ -42,10 +43,11 @@ class Deque<T> {
 
   removeBack() {
     if (this.isEmpty()) return undefined;
-    console.log(this.items);
-    console.log(this.count);
-    const result = this.items.get(this.count);
-    this.items.delete(this.count);
+
+    const result = this.items.get(this.count - 1);
+    // console.log("this.count", this.count);
+    // console.log("items", this.items);
+    this.items.delete(this.count - 1);
     this.count--;
 
     return result;
@@ -70,11 +72,11 @@ class Deque<T> {
   }
 
   toString() {
-    let result = "";
+    let result = `${this.items.get(this.lowestCount)}`;
 
-    this.items.forEach((value, key) => {
-      result += `${key === this.lowestCount ? "" : ","}${value}`;
-    });
+    for (let i = this.lowestCount + 1; i < this.count; i++) {
+      result += `,${this.items.get(i)}`;
+    }
 
     return result;
   }
@@ -92,7 +94,7 @@ console.log(deque.size());
 console.log(deque.isEmpty());
 console.log(deque.removeFront());
 console.log(deque.toString());
-console.log("remove back", deque.removeBack());
+deque.removeBack();
 console.log(deque.toString());
 deque.addFront("john");
 console.log(deque.toString());
