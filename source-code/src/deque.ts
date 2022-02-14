@@ -84,17 +84,17 @@ class Deque<T> {
 
 const deque = new Deque();
 
-console.log(deque.isEmpty());
-deque.addBack("john"); // 2
-deque.addBack("jack"); // 3
-console.log(deque.toString());
-deque.addBack("camila"); // 1
-console.log(deque.toString());
-console.log(deque.size());
-console.log(deque.isEmpty());
-console.log(deque.removeFront());
-console.log(deque.toString());
-deque.removeBack();
-console.log(deque.toString());
-deque.addFront("john");
-console.log(deque.toString());
+// console.log(deque.isEmpty());
+// deque.addBack("john"); // 2
+// deque.addBack("jack"); // 3
+// console.log(deque.toString());
+// deque.addBack("camila"); // 1
+// console.log(deque.toString());
+// console.log(deque.size());
+// console.log(deque.isEmpty());
+// console.log(deque.removeFront());
+// console.log(deque.toString());
+// deque.removeBack();
+// console.log(deque.toString());
+// deque.addFront("john");
+// console.log(deque.toString());
