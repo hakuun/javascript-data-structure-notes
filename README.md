@@ -7,3 +7,5 @@
 - [JavaScript 数据结构之双端队列的 TypeScript 实现](./notes/deque.md)
 
 - [JavaScript 数据结构之链表的 TypeScript 实现](./notes/linkedList.md)
+- 
+- [JavaScript 数据结构之双向链表的 TypeScript 实现](./notes/doublyLinkedList.md)

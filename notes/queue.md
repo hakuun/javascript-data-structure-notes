@@ -173,3 +173,44 @@ class MapQueue<T> {
   }
 }
 ```
+
+#### 使用队列实现击鼓传花
+
+>由于队列经常被应用在计算机领域和我们的现实生活中，就出现了一些队列的修改版本，我们会在本章实现它们。这其中的一种叫作循环队列。循环队列的一个例子就是击鼓传花游戏（hot potato）。在这个游戏中，孩子们围成一个圆圈，把花尽快地传递给旁边的人。某一时刻传花停止，这个时候花在谁手里，谁就退出圆圈、结束游戏。重复这个过程，直到只剩一个孩子（胜者）。
+> 
+> — 学习 JavaScript 数据结构与算法（第 3 版）
+
+```ts
+function hotPotato(list:string[], number:number){
+  const queue = new MapQueue<string>();
+  const loserList:string[] = []
+
+  for(let i = 0; i < list.length; i++){
+    queue.enqueue(list[i]);
+  }
+
+  while (queue.size() > 1){
+    for(let i = 0; i < number; i++){
+      queue.enqueue(queue.dequeue()!);
+    }
+    const loser = queue.dequeue()!;
+    console.log(loser,'被淘汰了');
+    loserList.push(loser);
+  }
+
+  console.log('-------------------------------')
+  console.log(queue.dequeue(),'获胜了');
+  return queue.dequeue();
+}
+
+hotPotato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7);
+
+// 输出：
+// David 被淘汰了
+// Kent 被淘汰了
+// Jane 被淘汰了
+// Bill 被淘汰了
+// Brad 被淘汰了
+// -------------------------------
+// Susan  获胜了
+```

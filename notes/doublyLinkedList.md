@@ -1,3 +1,14 @@
+#### 定义
+
+>双向链表和普通链表的区别在于，在链表中，一个节点只有链向下一个节点的链接；而在双向链表中，链接是双向的：一个链向下一个元素，另一个链向前一个元素。
+> 
+>  — 学习 JavaScript 数据结构与算法（第 3 版）
+
+#### 实现 
+
+因为双向链表有两个指针，所以在插入和删除时与单项链表不同，要改变两个指针的指向。
+
+```ts
 class DoublyLinkedNode<T> {
   value: T;
   next: DoublyLinkedNode<T> | null;
@@ -9,17 +20,7 @@ class DoublyLinkedNode<T> {
     this.prev = null;
   }
 }
-/**
- * ❑ push(element)：向链表尾部添加一个新元素。
- * ❑ insert(element, position)：向链表的特定位置插入一个新元素。
- * ❑ getElementAt(index)：返回链表中特定位置的元素。如果链表中不存在这样的元素，则返回undefined。
- * ❑ remove(element)：从链表中移除一个元素。
- * ❑ indexOf(element)：返回元素在链表中的索引。如果链表中没有该元素则返回-1。
- * ❑ removeAt(position)：从链表的特定位置移除一个元素。
- * ❑ isEmpty()：如果链表中不包含任何元素，返回true，如果链表长度大于0则返回false。
- * ❑ size()：返回链表包含的元素个数，与数组的length属性类似。
- * ❑ toString()：返回表示整个链表的字符串。由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。
- */
+
 class DoublydoublyLinkedList<T> {
   head: DoublyLinkedNode<T> | null;
   tail: DoublyLinkedNode<T> | null;
@@ -193,20 +194,4 @@ class DoublydoublyLinkedList<T> {
     return result
   }
 }
-
-// const doublyLinkedList = new DoublydoublyLinkedList()
-//
-// console.log(doublyLinkedList.isEmpty())
-// doublyLinkedList.push('a')
-// doublyLinkedList.push('b')
-// console.log(doublyLinkedList.isEmpty())
-// doublyLinkedList.toString()
-// doublyLinkedList.insert('c',0)
-// doublyLinkedList.toString()
-// console.log(doublyLinkedList.indexOf('a'))
-// console.log(doublyLinkedList.getElementAt(2))
-// console.log(doublyLinkedList.size())
-// doublyLinkedList.remove('a')
-// doublyLinkedList.toString()
-// doublyLinkedList.removeAt(1)
-// doublyLinkedList.toString()
+```

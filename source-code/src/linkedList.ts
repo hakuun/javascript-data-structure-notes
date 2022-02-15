@@ -161,9 +161,8 @@ class LinkedList<T> {
       flag = false
       current = current.next;
     }
-    console.log(result)
-    return result
 
+    return result
   }
 }
 

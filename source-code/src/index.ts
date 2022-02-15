@@ -1,5 +1,5 @@
 import "./stack";
-import "./quenue";
+import "./queue";
 import "./deque";
 import "./linkedList";
 import "./doublyLinkedList";

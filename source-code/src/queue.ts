@@ -143,3 +143,28 @@ class MapQueue<T> {
 // console.log(queue.toString());
 // console.log(queue.size());
 // console.log("peek", queue.peek());
+
+
+function hotPotato(list:string[], number:number){
+  const queue = new MapQueue<string>();
+  const loserList:string[] = []
+
+  for(let i = 0; i < list.length; i++){
+    queue.enqueue(list[i]);
+  }
+
+  while (queue.size() > 1){
+    for(let i = 0; i < number; i++){
+      queue.enqueue(queue.dequeue()!);
+    }
+    const loser = queue.dequeue()!;
+    console.log(loser,'被淘汰了');
+    loserList.push(loser);
+  }
+
+  console.log('-------------------------------')
+  console.log(queue.dequeue(),'获胜了');
+  return queue.dequeue();
+}
+
+hotPotato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7);
