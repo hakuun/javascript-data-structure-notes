@@ -167,4 +167,4 @@ function hotPotato(list:string[], number:number){
   return queue.dequeue();
 }
 
-hotPotato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7);
+// hotPotato(["Bill", "David", "Susan", "Jane", "Kent", "Brad"], 7);
