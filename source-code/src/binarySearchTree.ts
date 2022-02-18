@@ -24,8 +24,10 @@ class BinaryTreeNode<T> {
 
 class BinarySearchTree<T> {
   root: BinaryTreeNode<T> | null;
+  compareFn: (a: T, b: T) => Compare;
 
-  constructor() {
+  constructor(compareFn: (a: T, b: T) => Compare = defaultCompare) {
+    this.compareFn = compareFn;
     this.root = null;
   }
 
@@ -127,15 +129,73 @@ class BinarySearchTree<T> {
     if (node === null) {
       return false;
     }
-    if (node.key === key) {
+    if (this.compareFn(node.key, key) === Compare.EQUAL) {
       return true;
-    } else if (node.key > key) {
+    } else if (this.compareFn(node.key, key) === Compare.BIGGER_THAN) {
       return this.searchNode(node.left, key);
     } else {
       return this.searchNode(node.right, key);
     }
   }
 
+  remove(key: T){
+    this.root = this.removeNode(this.root, key);
+  }
+
+  removeNode(node:BinaryTreeNode<T> | null, key:T): BinaryTreeNode<T> | null {
+    if (node === null) {
+      return null;
+    }
+    if (this.compareFn(node.key, key) === Compare.LESS_THAN) {
+      // 要删除的节点在该子节点的左侧
+      node.left = this.removeNode(node.left, key);
+      return node
+    } else if (this.compareFn(node.key, key) === Compare.BIGGER_THAN) {
+      // 要删除的节点在该子节点的右侧
+      node.right = this.removeNode(node.right, key);
+      return node
+    } else {
+      // node.key === key 该节点就是要删除的节点，删除时要考虑以下情况：
+      // 1. 第一种情况：该节点没有子节点
+      if (node.left === null && node.right === null) {
+        node = null
+        return node
+      }
+      // 2. 第二种情况，该节点在一侧有子节点
+      if (node.left === null){
+        node = this.removeNode(node.right, key)
+        return node
+      } else if (node.right === null) {
+        node = this.removeNode(node.left, key)
+        return node
+      }
+      // 3. 第三种情况，该节点在两侧都有子节点
+      // 找到该节点的后继节点，即该节点右侧最小的节点
+      const successor = this.minNode(node.right);
+      // 将后继节点的值赋值给该节点
+      node.key = successor!;
+      // 删除后继节点
+      node.right = this.removeNode(node, successor!)
+      return node
+    }
+  }
+}
+
+
+export enum Compare {
+  LESS_THAN = -1,
+  BIGGER_THAN = 1,
+  EQUAL = 0
+}
+
+export function defaultCompare<T>(key1:T, key2:T){
+  if (key1 === key2) {
+    return Compare.EQUAL;
+  } else if (key1 > key2) {
+    return Compare.BIGGER_THAN;
+  } else {
+    return Compare.LESS_THAN;
+  }
 }
 
 const tree = new BinarySearchTree<number>();
